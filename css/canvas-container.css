@@ -1,0 +1,14 @@
+.canvas-container {
+    display: flex;
+    width: 500px;
+    height: 500px;
+    align-self: center;
+    justify-self: center;
+}
+
+#main-canvas {
+    /* background-color: red; */
+    width: 500px;
+    height: 500px;
+    border-radius: 10px;
+}

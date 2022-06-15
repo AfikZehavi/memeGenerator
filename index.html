@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="main.css">
+    <title>MemeGen</title>
+</head>
+<body>
+    <header class="main-nav">
+        <div class="logo">
+            <img src="logo/logo.png" alt="">
+        </div>
+
+        <ul class="page-links">
+            <li>Memes</li>
+            <li>Gallery</li>
+            <li>About</li>
+        </ul>
+    </header>
+
+    <section class="canvas-container">
+        <canvas id="main-canvas">
+
+        </canvas>
+    </section>
+
+    <section class="canvas-editor">
+        <div class="edit-text">
+            <div class="edit-text-line"><h3>Edit Text Line</h3></div>
+        </div>
+        <div class="input-text">
+            <input type="text" onchange="onSetLineTxt(this.value)">
+        </div>
+    </section>
+
+    <script src="services/meme-serevice.js"></script>
+    <script src="controllers/meme-controller.js"></script>
+</body>
+</html>
