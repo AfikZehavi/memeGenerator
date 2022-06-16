@@ -1,5 +1,4 @@
 'use strict'
-console.log('storage connected');
 function saveToStorage(key, val) {
     localStorage.setItem(key, JSON.stringify(val))
   }

@@ -65,6 +65,9 @@ function onSetLineTxt(text, size = 30) {
         onAddLine()
     }
     setLineTxt(text, size)
+    // Clear text input
+    document.querySelector('.input-text-element').value = ''
+
     renderMeme()
 }
 
@@ -76,9 +79,8 @@ function onEditText(ev) {
     ev.preventDefault()
     const pos = getEvPos(ev);
     const idx = getTextIdx(pos)
-    console.log('here work');
     renderMeme()
-    if (idx) {
+    if (idx > -1) {
         var elInputText = document.querySelector('.input-text-element')
         const meme = getMeme()
         if (meme.lines[idx]) elInputText.value = meme.lines[idx].txt
@@ -199,7 +201,6 @@ function isTextSelected() {
 }
 
 function onChangeColor(color) {
-    // console.log(color);
     if(!isTextSelected()) return
     changeTextColor(color)
     renderMeme()
@@ -218,7 +219,6 @@ function onLineCountAndUpdate() {
 }
 
 function onChangeLine() {
-    // console.log('work');
     changeSelectedLine()
     renderMeme()
 }

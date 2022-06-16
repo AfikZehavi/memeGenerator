@@ -1,18 +1,19 @@
 .main-nav {
     grid-column: 1 / span 2;
     display: flex;
+    background-color: white;
     justify-content: space-between;
     align-items: center;
     box-shadow: 0px 1px 0px #DBDBDB;
     z-index: 10;
-    padding: 20px;
+    padding: 20pxs;
     /* height: 50px; */
 }
 
 .page-links {
     display: flex;
     gap: 3em;
-    /* padding: 5em; */
+    padding: 5em;
 }
 
 .page-links li {
@@ -29,3 +30,4 @@
 .page-links li:hover {
     color: var(--clr-orange)
 }
+

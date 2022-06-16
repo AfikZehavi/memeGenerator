@@ -11,6 +11,13 @@
 </head>
 
 <body onload="openGallery()">
+    <section class="mobile-navigation display-none">
+        <ul class="page-mobile-links list-layout">
+            <li onclick="openSavedMemesMobile()">Memes</li>
+            <li onclick="openGalleryMobile()">Gallery</li>
+            <li>About</li>
+        </ul>
+    </section>
     <header class="main-nav">
         <div class="logo">
             <img src="logo/logo.png" alt="">
@@ -21,8 +28,12 @@
             <li id="gallery-link" onclick="openGallery(this)">Gallery</li>
             <li>About</li>
         </ul>
-    </header>
+        <label class="hamburger-button display-none" onclick="toggleMobileNevigation(this)">☰</label>
+       
 
+        </section>
+    </header>
+    
     <section class="canvas-container display-none">
         <canvas id="main-canvas">
 
