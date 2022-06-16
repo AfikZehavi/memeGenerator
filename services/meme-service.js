@@ -27,9 +27,11 @@ function getMeme() {
     return gMeme
 }
 
-function setLineTxt(text) {
+function setLineTxt(text, size = 30) {
     // if (!gMeme.selectedLineIdx) return
     gMeme.lines[gMeme.selectedLineIdx].txt = text
+    gMeme.lines[gMeme.selectedLineIdx].size = size
+
 }
 
 function setImg(imgId) {

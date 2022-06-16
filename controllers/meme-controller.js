@@ -58,13 +58,13 @@ function onDrawText() {
     )
 }
 
-function onSetLineTxt(text) {
+function onSetLineTxt(text, size = 30) {
     // Add Line if there aren't any lines yet
     const meme = getMeme()
     if (!meme.lines || !meme.lines.length) {
         onAddLine()
     }
-    setLineTxt(text)
+    setLineTxt(text, size)
     renderMeme()
 }
 
@@ -245,4 +245,10 @@ function displayMemeSection() {
     document.querySelector('.canvas-container').classList.remove('display-none')
     document.querySelector('.gallery-container').classList.add('display-none')
     document.querySelector('.saved-memes-container').classList.add('display-none')
+}
+
+function onAddEmoji(emoji) {
+    
+    onSetLineTxt(emoji, 60)
+    renderMeme()
 }

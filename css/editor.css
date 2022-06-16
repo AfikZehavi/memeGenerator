@@ -1,8 +1,12 @@
 .canvas-editor {
+    display: flex;
+    position: relative;
+    flex-direction: column;
     background-color: var(--editor-background);
     padding: 10px;
     grid-column: 2;
     height: 90vh;
+    gap: 20px;
 }
 
 .text-editor-container {
@@ -17,8 +21,8 @@
 
 .text-options {
     display: flex;
+
     align-items: center;
-    justify-content: start;
     box-sizing: border-box;
     width: 100%;
     height: 29px;
@@ -35,13 +39,22 @@
     align-items: center;
     justify-content: space-between;
     flex-direction: row;
-    padding: 15px;
+    padding: 5px;
     cursor: default;
 }
 
 .set-lines i:hover {
     cursor: pointer;
     color: var(--clr-orange)
+}
+
+.fontselect {
+    box-sizing: border-box;
+    border: 1px solid #EBEBEB;
+    color:  #C4C4C4;
+    border-radius: 2px;
+    align-self: left;
+    width: 160px;
 }
 
 .input-text {
@@ -91,9 +104,6 @@
 }
 
 .text-options ul {
-    display: flex;
-    /* flex-basis: strech; */
-    list-style-type: none;
     gap: 15px;
     color: #727272;
     font-family: 'Georgia', sans-serif;
@@ -115,6 +125,15 @@
 
 }
 
+.emojis-container {
+    background: #FFFFFF;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 98%;
+    height: 100px;
+}
+
 .save-meme-btn {
     background-color: var(--clr-orange);
     color: white;
@@ -125,11 +144,16 @@
     border-radius: 35px;
 
     position: absolute;
-    bottom: 3px;
-    right: 0;
+    bottom: 40px;
+    right: 10px;
 
 }
 
 .save-meme-btn:active {
     box-shadow: inset 0px 0px 4px 0px black;
+}
+
+.emoji-list li {
+    font-size: 2em;
+    cursor: pointer;
 }
