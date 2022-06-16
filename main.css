@@ -4,7 +4,9 @@
 @import 'css/header.css';
 @import 'css/editor.css';
 @import 'css/canvas-container.css';
+@import 'css/gallery.css';
 
 /* Helpers */
 
-@import 'css/vars.css';
+@import 'helpers/vars.css';
+@import 'helpers/classes.css';

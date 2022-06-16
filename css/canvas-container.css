@@ -1,14 +1,20 @@
 .canvas-container {
-    display: flex;
+
     width: 500px;
     height: 500px;
     align-self: center;
     justify-self: center;
+    grid-column: 1;
 }
 
 #main-canvas {
-    /* background-color: red; */
+    /* background-image: 'imgs/1.jpg'; */
     width: 500px;
     height: 500px;
     border-radius: 10px;
+    cursor: grab;
+}
+
+#main-canvas:active {
+    cursor: grabbing;
 }

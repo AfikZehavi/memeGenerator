@@ -2,6 +2,8 @@ body {
     display: grid;
     width: 100%;
     grid-template-columns: 65% 35%;
-    grid-template-rows: 10% 90%;
+    grid-template-rows: 50px 90%;
     height: 100vh;
+    padding: 0;
+    margin: 0;
 }
