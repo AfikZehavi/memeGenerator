@@ -3,3 +3,7 @@
 function openGallery() {
     galleryInit();
 }
+
+function openSavedMemes() {
+    savedMemesInit()
+}

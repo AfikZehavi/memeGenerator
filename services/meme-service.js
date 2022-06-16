@@ -1,4 +1,6 @@
 'use strict'
+const MEMES_KEY = 'memesDB'
+var gSavedMemes = []
 
 var gMeme = {
     selectedImgId: 5,
@@ -31,6 +33,7 @@ function setLineTxt(text) {
 }
 
 function setImg(imgId) {
+    gMeme.lines =[]
     gMeme.selectedImgId = imgId;
     memeInit()
 }
@@ -109,4 +112,40 @@ function removeLine() {
 function changeFont(font) {
     const memeline = gMeme.lines[gMeme.selectedLineIdx]
     memeline.font = `${font}`
+}
+
+function saveMeme(meme) {
+    const memeDataURL = setCanvasToDataURL()
+    const newMeme = Object.assign({}, meme, {url: memeDataURL})
+    gSavedMemes.push(newMeme)
+    console.log(gSavedMemes);
+    
+
+    _savedMemesToStorage()
+}
+
+function _savedMemesToStorage() {
+    saveToStorage(MEMES_KEY, gSavedMemes)
+}
+
+function _loadSavedMemes() {
+    return loadFromStorage(MEMES_KEY)
+}
+
+function getSavedMemes() {
+    if (!gSavedMemes || !gSavedMemes.length) {
+        gSavedMemes = _loadSavedMemes()
+        console.log('hii');
+    }
+
+    return gSavedMemes
+}
+
+function loadMeme(idx) {
+    gMeme = gSavedMemes[idx]
+    memeInit()
+}
+
+function setCanvasToDataURL() {
+    return gElCanvas.toDataURL()
 }

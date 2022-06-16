@@ -1,5 +1,8 @@
+.display-none {
+    display: none !important;
+}
 
-.gallery-container {
+.gallery {
     grid-column: 1 / -1;
     display: grid;
     width: 95%;
@@ -8,13 +11,14 @@
     gap: 5px;
     justify-self: center;
     padding: 10px;
+
 }
 
-.gallery-container img{
+.gallery img{
     width: 100%;
     border-radius: 10px;
 } 
 
-.gallery-container img:hover {
+.gallery img:hover {
     cursor: pointer;
 }

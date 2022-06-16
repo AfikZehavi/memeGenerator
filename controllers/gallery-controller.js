@@ -19,9 +19,7 @@ const gImgs = [
 // </div>
 
 function galleryInit() {
-    document.querySelector('.canvas-editor').classList.add('display-none')
-    document.querySelector('.canvas-container').classList.add('display-none')
-    document.querySelector('.gallery-container').classList.remove('display-none')
+    displayGallerySection()
     renderGallery()
 }
 
@@ -38,4 +36,11 @@ function renderGallery() {
 
 function onImgSelect(imgId) {
     setImg(imgId)
+}
+
+function displayGallerySection() {
+    document.querySelector('.canvas-editor').classList.add('display-none')
+    document.querySelector('.canvas-container').classList.add('display-none')
+    document.querySelector('.saved-memes-container').classList.add('display-none')
+    document.querySelector('.gallery-container').classList.remove('display-none')
 }

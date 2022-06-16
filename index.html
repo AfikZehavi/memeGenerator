@@ -17,7 +17,7 @@
         </div>
 
         <ul class="page-links">
-            <li>Memes</li>
+            <li onclick="openSavedMemes()">Memes</li>
             <li onclick="openGallery()">Gallery</li>
             <li>About</li>
         </ul>
@@ -56,11 +56,11 @@
                     <li onclick="onIncreaseSize()">A+</li>
                     <li onclick="onDecreaseSize()">A-</li>
                     <li style="cursor: default">|</li>
-                    <li><i class="fa fa-align-left" id="align-left" onclick="onTextAlign(this.id)"></i></li>
-                    <li><i class="fa fa-align-center" id="align-center" onclick="onTextAlign(this.id)"></i></li>
-                    <li><i class="fa fa-align-right" id="align-right" onclick="onTextAlign(this.id)"></i></li>
+                    <i class="fa fa-align-left" id="align-left" onclick="onTextAlign(this.id)"></i>
+                    <i class="fa fa-align-center" id="align-center" onclick="onTextAlign(this.id)"></i>
+                    <i class="fa fa-align-right" id="align-right" onclick="onTextAlign(this.id)"></i>
                     <li style="cursor: default">|</li>
-                    <li><label for="change-color"><i class="fa-solid fa-paintbrush"></i></label><input type="color" name="change-color" id="change-color" onchange="onChangeColor(this.value)"></i></li>
+                    <label for="change-color"><i class="fa-solid fa-paintbrush"></i></label><input type="color" name="change-color" id="change-color" onchange="onChangeColor(this.value)"></i>
                 </ul>
             </div>
             <div class="input-text">
@@ -69,14 +69,22 @@
             </div>
     
         </div>
+
+        <button class="save-meme-btn" onclick="onSaveMeme()">Save Meme</button>
     </section>
 
-    <section class="gallery-container">
+    <section class="gallery-container gallery">
 
+    </section>
+
+    <section class="saved-memes-container display-none gallery">
+        
     </section>
     <script src="controllers/gallery-controller.js"></script>
     <script src="controllers/meme-controller.js"></script>
+    <script src="controllers/saved-memes-controller.js"></script>
     <script src="services/meme-service.js"></script>
+    <script src="services/storage-service.js"></script>
     <script src="main.js"></script>
 </body>
 

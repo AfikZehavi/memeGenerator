@@ -8,14 +8,11 @@ var gStartPosf
 
 function memeInit() {
     // toggle canvas and editor sections
-    document.querySelector('.canvas-editor').classList.remove('display-none')
-    document.querySelector('.canvas-container').classList.remove('display-none')
-    document.querySelector('.gallery-container').classList.add('display-none')
+    displayMemeSection()
     gElCanvas = document.getElementById('main-canvas')
     gCtx = gElCanvas.getContext('2d')
     resizeCanvas()
     const meme = getMeme()
-    meme.lines = []
     renderMeme()
     addEventListeners()
 }
@@ -62,7 +59,11 @@ function onDrawText() {
 }
 
 function onSetLineTxt(text) {
-    // onClearCanvas()
+    // Add Line if there aren't any lines yet
+    const meme = getMeme()
+    if (!meme.lines || !meme.lines.length) {
+        onAddLine()
+    }
     setLineTxt(text)
     renderMeme()
 }
@@ -75,6 +76,7 @@ function onEditText(ev) {
     ev.preventDefault()
     const pos = getEvPos(ev);
     const idx = getTextIdx(pos)
+    console.log('here work');
     renderMeme()
     if (idx) {
         var elInputText = document.querySelector('.input-text-element')
@@ -153,7 +155,7 @@ function onAddLine() {
 
 
 function addEventListeners() {
-    gElCanvas.addEventListener('dblclick', onEditText)
+    gElCanvas.addEventListener('click', onEditText)
     // gElCanvas.addEventListener('mousemove', onMove)
     // gElCanvas.addEventListener('mousedown', onDown)
     // gElCanvas.addEventListener('mouseup', onUp)
@@ -231,4 +233,16 @@ function onFontChange(font) {
     if (!isTextSelected()) return
     changeFont(font)
     renderMeme()
+}
+
+function onSaveMeme() {
+    const meme = getMeme()
+    saveMeme(meme)
+}
+
+function displayMemeSection() {
+    document.querySelector('.canvas-editor').classList.remove('display-none')
+    document.querySelector('.canvas-container').classList.remove('display-none')
+    document.querySelector('.gallery-container').classList.add('display-none')
+    document.querySelector('.saved-memes-container').classList.add('display-none')
 }

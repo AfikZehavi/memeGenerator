@@ -60,6 +60,7 @@
     border-bottom-left-radius: 10px;
     padding: 5px;
 }
+
 .edit-text-line {
     /* display: flex;
     flex-direction: row;
@@ -70,6 +71,7 @@
     align-items: center;
     gap: 10px;
 }
+
 .edit-text-line-header {
 
     font-family: 'Roboto', sans-serif;
@@ -111,4 +113,23 @@
     height: 0;
     width: 0;
 
+}
+
+.save-meme-btn {
+    background-color: var(--clr-orange);
+    color: white;
+    width: 140px;
+    height: 54px;
+    cursor: pointer;
+    border: 1px solid #FF9826;
+    border-radius: 35px;
+
+    position: absolute;
+    bottom: 3px;
+    right: 0;
+
+}
+
+.save-meme-btn:active {
+    box-shadow: inset 0px 0px 4px 0px black;
 }
