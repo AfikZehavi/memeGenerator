@@ -9,7 +9,6 @@ var gMeme = {
 }
 
 function getTextIdx(clickedPos) {
-    console.log('clickedPos', clickedPos);
     const idx = gMeme.lines.findIndex((line) => {
         const { startX, startY, widthX, size } = line
         return clickedPos.x > startX && clickedPos.x < startX + widthX && clickedPos.y < startY && clickedPos.y > startY - size
@@ -18,7 +17,6 @@ function getTextIdx(clickedPos) {
 
     if (idx !== -1) {
         gMeme.selectedLineIdx = idx
-        console.log('idx', idx);
         return idx
     }
     // return idx === -1 ? null : idx
@@ -47,7 +45,7 @@ function addLine() {
         txt: 'Enter Text...',
         widthX: 0,
         size: 30,
-        font: 'impact',
+        font: "impact",
         align: 'left',
         color: 'white',
         isDrag: false,
@@ -90,7 +88,6 @@ function alignText(direction) {
             memeline.startX = gElCanvas.width / 1.5
             break;
     }
-    console.log(memeline);
 }
 
 function changeTextColor(color) {
@@ -120,7 +117,6 @@ function saveMeme(meme) {
     const memeDataURL = setCanvasToDataURL()
     const newMeme = Object.assign({}, meme, {url: memeDataURL})
     gSavedMemes.push(newMeme)
-    console.log(gSavedMemes);
     
 
     _savedMemesToStorage()
@@ -137,7 +133,6 @@ function _loadSavedMemes() {
 function getSavedMemes() {
     if (!gSavedMemes || !gSavedMemes.length) {
         gSavedMemes = _loadSavedMemes()
-        console.log('hii');
     }
 
     return gSavedMemes

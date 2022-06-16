@@ -4,6 +4,11 @@ var gElCanvas
 var gCtx
 const gTouchEvs = ['dblclick', 'touchmove', 'touchend']
 var gStartPosf
+var gDuplicator
+var gIsDrag = false
+var gDuplicatorPos
+var gLineColor
+var gLongPress
 // memeInit()
 
 function memeInit() {
@@ -42,7 +47,7 @@ function onDrawText() {
     var meme = getMeme()
     meme.lines.forEach((memeline) => {
         gCtx.globalCompositeOperation = 'destination-over'
-        gCtx.lineWidth = 6;
+        // gCtx.lineWidth = 6;
         gCtx.textAlign = memeline.align
         gCtx.fillStyle = memeline.color
         gCtx.font = `${memeline.size}px ${memeline.font}`
@@ -144,6 +149,8 @@ function getEvPos(ev) {
     //         y: ev.pageY - ev.target.offsetTop - ev.target.clientTop
     //     }
     // }
+
+
     return pos
 }
 
@@ -156,12 +163,7 @@ function onAddLine() {
 }
 
 
-function addEventListeners() {
-    gElCanvas.addEventListener('click', onEditText)
-    // gElCanvas.addEventListener('mousemove', onMove)
-    // gElCanvas.addEventListener('mousedown', onDown)
-    // gElCanvas.addEventListener('mouseup', onUp)
-}
+
 
 function onIncreaseSize() {
     if (!isTextSelected()) return
@@ -189,7 +191,7 @@ function onTextAlign(alignValue) {
         case 'align-right':
             alignText('start')
             break;
-    
+
 
     }
     renderMeme()
@@ -197,11 +199,11 @@ function onTextAlign(alignValue) {
 
 function isTextSelected() {
     const meme = getMeme()
-    if (meme.selectedLineIdx > -1 &&  meme.lines.length > 0) return true 
+    if (meme.selectedLineIdx > -1 && meme.lines.length > 0) return true
 }
 
 function onChangeColor(color) {
-    if(!isTextSelected()) return
+    if (!isTextSelected()) return
     changeTextColor(color)
     renderMeme()
 }
@@ -248,7 +250,84 @@ function displayMemeSection() {
 }
 
 function onAddEmoji(emoji) {
-    
+
     onSetLineTxt(emoji, 60)
     renderMeme()
+}
+
+// Dragging function -->
+
+function onGrabElement(ev) {
+    // ev.preventDefault()
+    const pos = getEvPos(ev);
+    const idx = getTextIdx(pos)
+
+    if (idx > -1) {
+        const meme = getMeme()
+        const memeline = meme.lines[idx]
+        // duplicateCanvasElement(pos.x-15, pos.y-15)
+
+        gDuplicator = duplicateCanvasElement(pos.x - 15, pos.y - 15, meme, memeline)
+        gIsDrag = true
+        document.body.style.cursor = "grabbing";
+    }
+}
+
+function duplicateCanvasElement(posX, posY, meme, memeline) {
+
+    var elDuplicator = document.querySelector('.duplicator-object')
+
+    elDuplicator.style.top = `${posY}px`
+    elDuplicator.style.left = `${posX}px`
+    elDuplicator.style.fontSize = `${memeline.size}px`
+    elDuplicator.style.width = `${memeline.widthX}px`
+    elDuplicator.style.fontFamily = memeline.font
+    elDuplicator.style.color = memeline.color
+    elDuplicator.innerText = memeline.txt
+    elDuplicator.classList.remove('display-none')
+    // onRemoveLine()
+    gLineColor = memeline.color
+    memeline.color = '#ffffff00'
+    renderMeme()
+    return elDuplicator
+}
+function onDragElement(ev) {
+    ev.preventDefault()
+    if (!gIsDrag) return
+    gDuplicatorPos = getEvPos(ev)
+    gDuplicator.style.top = `${gDuplicatorPos.y}px`
+    gDuplicator.style.left = `${gDuplicatorPos.x}px`
+}
+
+function onPlaceElement(ev) {
+    // ev.preventDefault()
+    if (!gIsDrag) return
+    gIsDrag = false
+    gDuplicator.classList.add('display-none')
+    const meme = getMeme()
+    var memeline = meme.lines[meme.selectedLineIdx]
+    memeline.startX = gDuplicatorPos.x
+    memeline.startY = gDuplicatorPos.y + 25
+    memeline.color = gLineColor
+    renderMeme()
+
+}
+function addEventListeners() {
+
+    gElCanvas.addEventListener('click', onEditText)
+
+    // Listening to long click event
+    gElCanvas.addEventListener('mousedown', function (ev) {
+        gLongPress = setTimeout(() => {
+            onGrabElement(ev)
+        }, 500);
+    } )
+    gElCanvas.addEventListener('mousemove', onDragElement)
+    document.querySelector('.canvas-container').addEventListener('mouseup', function () {
+        if (!gLongPress) return
+        clearTimeout(gLongPress)
+        onPlaceElement()
+    })
+
+
 }

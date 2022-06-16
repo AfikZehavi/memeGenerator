@@ -10,7 +10,7 @@
     <title>MemeGen</title>
 </head>
 
-<body onload="openGallery()">
+<body class="notSelectable" onload="openGallery()">
     <section class="mobile-navigation display-none">
         <ul class="page-mobile-links list-layout">
             <li onclick="openSavedMemesMobile()">Memes</li>
@@ -35,9 +35,12 @@
     </header>
     
     <section class="canvas-container display-none">
-        <canvas id="main-canvas">
-
+        <!-- <h2 class="duplicator-object">DuplicateMe</h2> -->
+        
+        <canvas data-long-press-delay="500" id="main-canvas">
+            
         </canvas>
+        <span class="duplicator-object display-none">DuplicateMe</span>
     </section>
 
     <section class="canvas-editor display-none">

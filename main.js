@@ -7,6 +7,7 @@ function openGallery(elLink = document.getElementById('gallery-link')) {
     galleryInit();
 }
 
+
 function openSavedMemes(elLink) {
     changeLinkTextColor(elLink)
     savedMemesInit()
