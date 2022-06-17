@@ -135,15 +135,15 @@ function onAddLine() {
 
 }
 
-function onIncreaseSize() {
+function onIncreaseSize(size = 10) {
     if (!isTextSelected()) return
-    increaseSize()
+    increaseSize(size)
     renderCanvas()
 }
 
-function onDecreaseSize() {
+function onDecreaseSize(size = 10) {
     if (!isTextSelected()) return
-    decreaseSize()
+    decreaseSize(size)
     renderCanvas()
 }
 
@@ -309,10 +309,10 @@ function addTouchListeners() {
     gElCanvas.addEventListener('gesturechange', function(e) {
         if (e.scale < 1.0) {
             // User moved fingers closer together
-            onDecreaseSize()
+            onDecreaseSize(1)
         } else if (e.scale > 1.0) {
             // User moved fingers further apart
-            onIncreaseSize()
+            onIncreaseSize(1)
         }
     }, false);
 }

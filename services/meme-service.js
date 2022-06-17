@@ -63,14 +63,14 @@ function moveElement(idx, dx, dy) {
     gMeme.lines[idx].y = dy;
 }
 
-function increaseSize() {
+function increaseSize(size) {
     var memeline = gMeme.lines[gMeme.selectedLineIdx]
-    memeline.size += 10
+    memeline.size += size
 }
 
-function decreaseSize() {
+function decreaseSize(size) {
     var memeline = gMeme.lines[gMeme.selectedLineIdx]
-    memeline.size -= 10
+    memeline.size -= size
 
 }
 function alignText(direction) {
