@@ -312,7 +312,7 @@ function addTouchListeners() {
             onDecreaseSize()
         } else if (e.scale > 1.0) {
             // User moved fingers further apart
-            onDecreaseSize()
+            onIncreaseSize()
         }
     }, false);
 }
