@@ -309,10 +309,10 @@ function addTouchListeners() {
     gElCanvas.addEventListener('gesturechange', function(e) {
         if (e.scale < 1.0) {
             // User moved fingers closer together
-            onDecreaseSize(1)
+            onDecreaseSize(0.035)
         } else if (e.scale > 1.0) {
             // User moved fingers further apart
-            onIncreaseSize(1)
+            onIncreaseSize(0.035)
         }
     }, false);
 }
