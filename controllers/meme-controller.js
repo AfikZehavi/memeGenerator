@@ -302,4 +302,17 @@ function addTouchListeners() {
         clearTimeout(gLongPress)
         onPlaceElement()
     })
+
+
+    /////// Pinch events to increase or decrease size of text
+
+    gElCanvas.addEventListener('gestureend', function(e) {
+        if (e.scale < 1.0) {
+            // User moved fingers closer together
+            onDecreaseSize()
+        } else if (e.scale > 1.0) {
+            // User moved fingers further apart
+            onDecreaseSize()
+        }
+    }, false);
 }
