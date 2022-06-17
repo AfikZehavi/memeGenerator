@@ -2,7 +2,7 @@
 
 var gElCanvas
 var gCtx
-const gTouchEvs = ['dblclick', 'touchmove', 'touchend']
+const gTouchEvs = ['touchstart', 'touchmove', 'touchend']
 var gStartPosf
 var gDuplicator
 var gIsDrag = false
@@ -18,29 +18,41 @@ function memeInit() {
     gCtx = gElCanvas.getContext('2d')
     resizeCanvas()
     const meme = getMeme()
+    const elContainer = document.querySelector('.canvas-container')
+
+    elContainer.style.backgroundImage = `imgs/${meme.selectedImgId}.jpg`
     renderMeme()
     addEventListeners()
+    addTouchListeners()
+    window.onresize = () => resizeCanvas(true)
 }
 function renderMeme() {
     const meme = getMeme()
+    console.log(meme.lines);
     onClearCanvas()
     onDrawImageById(meme.selectedImgId)
     onDrawText()
+
     onLineCountAndUpdate()
 }
 
-function resizeCanvas() {
+function resizeCanvas(isSizeChanged = false) {
     const elContainer = document.querySelector('.canvas-container')
     gElCanvas.width = elContainer.offsetWidth
     gElCanvas.height = elContainer.offsetHeight
+    if (isSizeChanged) renderMeme()
 }
 
 function onDrawImageById(id) {
     var img = new Image(500, 500);
     img.onload = function () {
         gCtx.drawImage(img, 0, 0, gElCanvas.width, gElCanvas.height)
+
     }
     img.src = `imgs/${id}.jpg`
+
+
+
 }
 
 function onDrawText() {
@@ -84,7 +96,7 @@ function onEditText(ev) {
     ev.preventDefault()
     const pos = getEvPos(ev);
     const idx = getTextIdx(pos)
-    renderMeme()
+    // renderMeme()
     if (idx > -1) {
         var elInputText = document.querySelector('.input-text-element')
         const meme = getMeme()
@@ -138,17 +150,24 @@ function getEvPos(ev) {
         y: ev.offsetY
     }
     // Check if its a touch ev
-    // if (gTouchEvs.includes(ev.type)) {
-    //     //soo we will not trigger the mouse ev
-    //     ev.preventDefault()
-    //     //Gets the first touch point
-    //     ev = ev.changedTouches[0]
-    //     //Calc the right pos according to the touch screen
-    //     pos = {
-    //         x: ev.pageX - ev.target.offsetLeft - ev.target.clientLeft,
-    //         y: ev.pageY - ev.target.offsetTop - ev.target.clientTop
-    //     }
-    // }
+    if (gTouchEvs.includes(ev.type)) {
+        //soo we will not trigger the mouse ev
+        ev.preventDefault()
+        //Gets the first touch point
+        ev = ev.touches[0]
+        //Calc the right pos according to the touch screen
+        var rect = ev.target.getBoundingClientRect();
+        pos = {
+            x: ev.clientX - rect.left,
+            y: ev.clientY - rect.top
+        }
+        // console.log(pos);
+
+
+
+        // console.log(pos);
+
+    }
 
 
     return pos
@@ -262,6 +281,7 @@ function onGrabElement(ev) {
     const pos = getEvPos(ev);
     const idx = getTextIdx(pos)
 
+    // console.log('work');
     if (idx > -1) {
         const meme = getMeme()
         const memeline = meme.lines[idx]
@@ -309,25 +329,33 @@ function onPlaceElement(ev) {
     memeline.startX = gDuplicatorPos.x
     memeline.startY = gDuplicatorPos.y + 25
     memeline.color = gLineColor
+    document.body.style.cursor = "default";
+    
     renderMeme()
 
 }
 function addEventListeners() {
-
+    // Handeling mouse click event
     gElCanvas.addEventListener('click', onEditText)
-
     // Listening to long click event
     gElCanvas.addEventListener('mousedown', function (ev) {
+
         gLongPress = setTimeout(() => {
             onGrabElement(ev)
-        }, 500);
-    } )
+        }, 100);
+    })
     gElCanvas.addEventListener('mousemove', onDragElement)
     document.querySelector('.canvas-container').addEventListener('mouseup', function () {
+
         if (!gLongPress) return
         clearTimeout(gLongPress)
         onPlaceElement()
     })
+}
 
+function addTouchListeners() {
 
+    gElCanvas.addEventListener('touchstart', onGrabElement)
+    gElCanvas.addEventListener('touchmove', onDragElement)
+    document.querySelector('.canvas-container').addEventListener('touchend', onPlaceElement)
 }

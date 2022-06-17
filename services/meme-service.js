@@ -16,6 +16,7 @@ function getTextIdx(clickedPos) {
 
 
     if (idx !== -1) {
+        console.log(idx);
         gMeme.selectedLineIdx = idx
         return idx
     }

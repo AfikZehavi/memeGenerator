@@ -107,14 +107,15 @@
     gap: 15px;
     color: #727272;
     font-family: 'Georgia', sans-serif;
-    cursor: pointer;
+    
     height: 20px;
     width: 90%;
 }
 
 
-.text-options ul li:hover {
-    color: var(--clr-orange)
+.text-options ul *:hover {
+    color: var(--clr-orange);
+    cursor: pointer;
 }
 
 .text-options #change-color {
