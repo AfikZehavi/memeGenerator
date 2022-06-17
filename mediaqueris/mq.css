@@ -44,11 +44,10 @@
     }
 
     .save-meme-btn {
-        position: absolute;
-        bottom: 0;
+        position: static;
         width: 98%;
         justify-self: center;
-        margin: 0px;
+        margin: 10px;
     }
 }
 
