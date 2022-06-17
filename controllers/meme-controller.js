@@ -66,9 +66,9 @@ function onDrawText() {
     )
 }
 
-function onSetLineTxt(ev, text, size = 30) {
+function onSetLineTxt(text, size = 30) {
     // Add Line if there aren't any lines yet
-    ev.preventDefault()
+    // ev.preventDefault()
     const meme = getMeme()
     if (!meme.lines || !meme.lines.length) {
         onAddLine()
