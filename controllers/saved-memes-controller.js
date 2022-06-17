@@ -23,6 +23,6 @@ function onOpenMeme(idx) {
 function displaySavedMemesSection() {
     document.querySelector('.canvas-editor').classList.add('display-none')
     document.querySelector('.canvas-container').classList.add('display-none')
-    document.querySelector('.gallery-container').classList.add('display-none')
+    document.querySelector('.gallery-page').classList.add('display-none')
     document.querySelector('.saved-memes-container').classList.remove('display-none')
 }

@@ -13,7 +13,7 @@
 .page-links {
     display: flex;
     gap: 3em;
-    padding: 5em;
+    padding-right: 3em;
 }
 
 .page-links li {

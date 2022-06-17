@@ -3,13 +3,8 @@
 var gElCanvas
 var gCtx
 const gTouchEvs = ['touchstart', 'touchmove', 'touchend']
-var gStartPosf
-var gDuplicator
-var gIsDrag = false
-var gDuplicatorPos
-var gLineColor
+var gStartPos
 var gLongPress
-// memeInit()
 
 function memeInit() {
     // toggle canvas and editor sections
@@ -17,21 +12,17 @@ function memeInit() {
     gElCanvas = document.getElementById('main-canvas')
     gCtx = gElCanvas.getContext('2d')
     resizeCanvas()
-    const meme = getMeme()
-    const elContainer = document.querySelector('.canvas-container')
-
-    elContainer.style.backgroundImage = `imgs/${meme.selectedImgId}.jpg`
-    renderMeme()
+    renderCanvas()
+    // clearEventListeners()
     addEventListeners()
     addTouchListeners()
     window.onresize = () => resizeCanvas(true)
 }
-function renderMeme() {
+function renderCanvas() {
     const meme = getMeme()
-    console.log(meme.lines);
-    onClearCanvas()
+    // onClearCanvas()
     onDrawImageById(meme.selectedImgId)
-    onDrawText()
+    // onDrawText()
 
     onLineCountAndUpdate()
 }
@@ -40,14 +31,14 @@ function resizeCanvas(isSizeChanged = false) {
     const elContainer = document.querySelector('.canvas-container')
     gElCanvas.width = elContainer.offsetWidth
     gElCanvas.height = elContainer.offsetHeight
-    if (isSizeChanged) renderMeme()
+    if (isSizeChanged) renderCanvas()
 }
 
 function onDrawImageById(id) {
     var img = new Image(500, 500);
     img.onload = function () {
         gCtx.drawImage(img, 0, 0, gElCanvas.width, gElCanvas.height)
-
+        onDrawText()
     }
     img.src = `imgs/${id}.jpg`
 
@@ -58,7 +49,7 @@ function onDrawImageById(id) {
 function onDrawText() {
     var meme = getMeme()
     meme.lines.forEach((memeline) => {
-        gCtx.globalCompositeOperation = 'destination-over'
+        // gCtx.globalCompositeOperation = 'destination-over'
         // gCtx.lineWidth = 6;
         gCtx.textAlign = memeline.align
         gCtx.fillStyle = memeline.color
@@ -85,7 +76,7 @@ function onSetLineTxt(text, size = 30) {
     // Clear text input
     document.querySelector('.input-text-element').value = ''
 
-    renderMeme()
+    renderCanvas()
 }
 
 function onClearCanvas() {
@@ -107,40 +98,6 @@ function onEditText(ev) {
 
 }
 
-// function onDown(ev) {
-//     const pos = getEvPos(ev)
-//     const idx = getTextIdx(pos)
-
-//     if (idx) {
-//         setElementDrag(idx, true)
-//         //Save the pos we start from 
-//         gStartPos = pos
-//         document.body.style.cursor = 'grabbing' 
-//     }
-// }
-
-// function onMove(ev) {
-//     var pos = getEvPos(ev)
-//     const idx = getTextIdx(pos)
-//     const meme = getMeme()
-
-//     if (meme.lines[idx].isDrag) {
-//         pos = getEvPos(ev)
-
-//         const dx = pos.x - gStartPos.x
-//         const dy = pos.y - gStartPos.y
-
-//         moveElement(idx, dx, dy)
-//         gStartPos = pos
-//         //The canvas is render again after every move
-//         renderCanvas()
-//     }
-// }
-
-// function onUp() {
-//     setElementDrag(idx, false)
-//     document.body.style.cursor = 'grab'
-// }
 
 function getEvPos(ev) {
 
@@ -161,11 +118,6 @@ function getEvPos(ev) {
             x: ev.clientX - rect.left,
             y: ev.clientY - rect.top
         }
-        // console.log(pos);
-
-
-
-        // console.log(pos);
 
     }
 
@@ -177,23 +129,20 @@ function getEvPos(ev) {
 function onAddLine() {
     addLine()
     // onClearCanvas()
-    renderMeme()
+    renderCanvas()
 
 }
-
-
-
 
 function onIncreaseSize() {
     if (!isTextSelected()) return
     increaseSize()
-    renderMeme()
+    renderCanvas()
 }
 
 function onDecreaseSize() {
     if (!isTextSelected()) return
     decreaseSize()
-    renderMeme()
+    renderCanvas()
 }
 
 function onTextAlign(alignValue) {
@@ -213,7 +162,7 @@ function onTextAlign(alignValue) {
 
 
     }
-    renderMeme()
+    renderCanvas()
 }
 
 function isTextSelected() {
@@ -224,7 +173,7 @@ function isTextSelected() {
 function onChangeColor(color) {
     if (!isTextSelected()) return
     changeTextColor(color)
-    renderMeme()
+    renderCanvas()
 }
 
 function onLineCountAndUpdate() {
@@ -241,19 +190,19 @@ function onLineCountAndUpdate() {
 
 function onChangeLine() {
     changeSelectedLine()
-    renderMeme()
+    renderCanvas()
 }
 
 function onRemoveLine() {
     if (!isTextSelected()) return
     removeLine()
-    renderMeme()
+    renderCanvas()
 }
 
 function onFontChange(font) {
     if (!isTextSelected()) return
     changeFont(font)
-    renderMeme()
+    renderCanvas()
 }
 
 function onSaveMeme() {
@@ -264,90 +213,75 @@ function onSaveMeme() {
 function displayMemeSection() {
     document.querySelector('.canvas-editor').classList.remove('display-none')
     document.querySelector('.canvas-container').classList.remove('display-none')
-    document.querySelector('.gallery-container').classList.add('display-none')
+    document.querySelector('.gallery-page').classList.add('display-none')
     document.querySelector('.saved-memes-container').classList.add('display-none')
 }
 
 function onAddEmoji(emoji) {
 
     onSetLineTxt(emoji, 60)
-    renderMeme()
+    renderCanvas()
 }
 
-// Dragging function -->
+/////// Dragging function -->
 
 function onGrabElement(ev) {
     // ev.preventDefault()
     const pos = getEvPos(ev);
     const idx = getTextIdx(pos)
 
-    // console.log('work');
     if (idx > -1) {
         const meme = getMeme()
         const memeline = meme.lines[idx]
-        // duplicateCanvasElement(pos.x-15, pos.y-15)
+        setElementDrag(true)
+        gStartPos = pos
+        gElCanvas.style.cursor = "grabbing";
 
-        gDuplicator = duplicateCanvasElement(pos.x - 15, pos.y - 15, meme, memeline)
-        gIsDrag = true
-        document.body.style.cursor = "grabbing";
     }
 }
 
-function duplicateCanvasElement(posX, posY, meme, memeline) {
-
-    var elDuplicator = document.querySelector('.duplicator-object')
-
-    elDuplicator.style.top = `${posY}px`
-    elDuplicator.style.left = `${posX}px`
-    elDuplicator.style.fontSize = `${memeline.size}px`
-    elDuplicator.style.width = `${memeline.widthX}px`
-    elDuplicator.style.fontFamily = memeline.font
-    elDuplicator.style.color = memeline.color
-    elDuplicator.innerText = memeline.txt
-    elDuplicator.classList.remove('display-none')
-    // onRemoveLine()
-    gLineColor = memeline.color
-    memeline.color = '#ffffff00'
-    renderMeme()
-    return elDuplicator
-}
 function onDragElement(ev) {
     ev.preventDefault()
-    if (!gIsDrag) return
-    gDuplicatorPos = getEvPos(ev)
-    gDuplicator.style.top = `${gDuplicatorPos.y}px`
-    gDuplicator.style.left = `${gDuplicatorPos.x}px`
-}
-
-function onPlaceElement(ev) {
-    // ev.preventDefault()
-    if (!gIsDrag) return
-    gIsDrag = false
-    gDuplicator.classList.add('display-none')
     const meme = getMeme()
-    var memeline = meme.lines[meme.selectedLineIdx]
-    memeline.startX = gDuplicatorPos.x
-    memeline.startY = gDuplicatorPos.y + 25
-    memeline.color = gLineColor
-    document.body.style.cursor = "default";
-    
-    renderMeme()
+    const memeline = meme.lines[meme.selectedLineIdx]
+    if (memeline && memeline.isDrag) {
+        const pos = getEvPos(ev)
+        const dx = pos.x - gStartPos.x
+        const dy = pos.y - gStartPos.y
+
+        moveElement(dx, dy)
+
+        gStartPos = pos
+
+        renderCanvas()
+    }
 
 }
+
+function onPlaceElement() {
+    const memeline = getMeme().lines[getMeme().selectedLineIdx]
+    if (!memeline) return
+    setElementDrag(false)
+    gElCanvas.style.cursor = 'grab'
+
+}
+
+/////// Calling Events and defining long press events
 function addEventListeners() {
     // Handeling mouse click event
     gElCanvas.addEventListener('click', onEditText)
     // Listening to long click event
     gElCanvas.addEventListener('mousedown', function (ev) {
-
+        if (gLongPress) clearTimeout(gLongPress)
         gLongPress = setTimeout(() => {
+
             onGrabElement(ev)
-        }, 100);
+        }, 150);
     })
     gElCanvas.addEventListener('mousemove', onDragElement)
     document.querySelector('.canvas-container').addEventListener('mouseup', function () {
 
-        if (!gLongPress) return
+        // if (!gLongPress) return
         clearTimeout(gLongPress)
         onPlaceElement()
     })
@@ -355,7 +289,17 @@ function addEventListeners() {
 
 function addTouchListeners() {
 
-    gElCanvas.addEventListener('touchstart', onGrabElement)
+    gElCanvas.addEventListener('touchstart', function (ev) {
+        if (gLongPress) clearTimeout(gLongPress)
+        gLongPress = setTimeout(() => {
+            onGrabElement(ev)
+        }, 100);
+    })
     gElCanvas.addEventListener('touchmove', onDragElement)
-    document.querySelector('.canvas-container').addEventListener('touchend', onPlaceElement)
+    document.querySelector('.canvas-container').addEventListener('touchend', function () {
+
+        if (!gLongPress) return
+        clearTimeout(gLongPress)
+        onPlaceElement()
+    })
 }

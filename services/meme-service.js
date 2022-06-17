@@ -20,7 +20,6 @@ function getTextIdx(clickedPos) {
         gMeme.selectedLineIdx = idx
         return idx
     }
-    // return idx === -1 ? null : idx
 }
 function getMeme() {
     return gMeme
@@ -49,14 +48,15 @@ function addLine() {
         font: "impact",
         align: 'left',
         color: 'white',
+        colorBackUp: 'white',
         isDrag: false,
     }
 
     gMeme.lines.push(newLine);
 }
 
-function setElementDrag(idx, isDrag) {
-    gMeme.lines[idx].isDrag = isDrag;
+function setElementDrag(isDrag) {
+    gMeme.lines[selectedLineIdx].isDrag = isDrag;
 }
 
 function moveElement(idx, dx, dy) {
@@ -94,6 +94,7 @@ function alignText(direction) {
 function changeTextColor(color) {
     var memeline = gMeme.lines[gMeme.selectedLineIdx]
     memeline.color = color
+    memeline.colorBackUp = memeline.color
 }
 
 function changeSelectedLine() {
@@ -146,4 +147,15 @@ function loadMeme(idx) {
 
 function setCanvasToDataURL() {
     return gElCanvas.toDataURL()
+}
+
+function setElementDrag(isDrag) {
+    const element = gMeme.lines[gMeme.selectedLineIdx]
+    element.isDrag = isDrag
+}
+
+function moveElement(dx, dy) {
+    const element = gMeme.lines[gMeme.selectedLineIdx]
+    element.startX += dx
+    element.startY += dy
 }

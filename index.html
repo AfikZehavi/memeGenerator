@@ -29,16 +29,13 @@
             <li>About</li>
         </ul>
         <label class="hamburger-button display-none" onclick="toggleMobileNevigation(this)">☰</label>
-       
+
 
         </section>
     </header>
-    
+
     <section class="canvas-container display-none">
-        <!-- <h2 class="duplicator-object">DuplicateMe</h2> -->
-        
         <canvas data-long-press-delay="500" id="main-canvas">
-            
         </canvas>
         <span class="duplicator-object display-none">DuplicateMe</span>
     </section>
@@ -49,7 +46,7 @@
             <ul class="set-lines">
                 <div class="edit-text-line-header">
                     <h3>Edit Text Line: </h3>
-                    
+
                 </div>
                 <div class="edit-text-line">
                     <h4 class="line-focus">0/0</h4>
@@ -74,14 +71,15 @@
                     <i class="fa fa-align-center" id="align-center" onclick="onTextAlign(this.id)"></i>
                     <i class="fa fa-align-right" id="align-right" onclick="onTextAlign(this.id)"></i>
                     <li style="cursor: default">|</li>
-                    <label for="change-color"><i class="fa-solid fa-paintbrush"></i></label><input type="color" name="change-color" id="change-color" onchange="onChangeColor(this.value)"></i>
+                    <label for="change-color"><i class="fa-solid fa-paintbrush"></i></label><input type="color"
+                        name="change-color" id="change-color" onchange="onChangeColor(this.value)"></i>
                 </ul>
             </div>
             <div class="input-text">
                 <input type="text" class="input-text-element" onchange="onSetLineTxt(this.value)"
                     placeholder="Enter Text...">
             </div>
-    
+
         </div>
         <div class="emojis-container">
             <ul class="emoji-list list-layout">
@@ -96,18 +94,28 @@
         </div>
         <button class="save-meme-btn" onclick="onSaveMeme()">Save Meme</button>
     </section>
-
-    <section class="gallery-container gallery">
-
+    <!-- Gallery Section -->
+    <section class="gallery-page">
+        <div class="search-container">
+            <!-- <input type="search" name="search" class="search-input" placeholder="Search" onchange="onSearch(this.value)"> -->
+            <form class="form-wrapper" onsubmit="onSearch(event)">
+                <input type="search" class="search-input" placeholder="Search here..." class="input-search">
+                <button type="submit"><i class="fa fa-magnifying-glass"></i></button>
+            </form>
+        </div>
+        <section class="gallery-container gallery">
+        </section>
     </section>
 
+
     <section class="saved-memes-container display-none gallery">
-        
+
     </section>
     <script src="controllers/gallery-controller.js"></script>
     <script src="controllers/meme-controller.js"></script>
     <script src="controllers/saved-memes-controller.js"></script>
     <script src="services/meme-service.js"></script>
+    <script src="services/gallery-service.js"></script>
     <script src="services/storage-service.js"></script>
     <script src="main.js"></script>
 </body>
