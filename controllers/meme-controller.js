@@ -66,8 +66,9 @@ function onDrawText() {
     )
 }
 
-function onSetLineTxt(text, size = 30) {
+function onSetLineTxt(ev, text, size = 30) {
     // Add Line if there aren't any lines yet
+    ev.preventDefault()
     const meme = getMeme()
     if (!meme.lines || !meme.lines.length) {
         onAddLine()
@@ -91,6 +92,7 @@ function onEditText(ev) {
     if (idx > -1) {
         var elInputText = document.querySelector('.input-text-element')
         const meme = getMeme()
+        onLineCountAndUpdate()
         if (meme.lines[idx]) elInputText.value = meme.lines[idx].txt
     }
 
@@ -250,9 +252,7 @@ function onDragElement(ev) {
         const dy = pos.y - gStartPos.y
 
         moveElement(dx, dy)
-
         gStartPos = pos
-
         renderCanvas()
     }
 

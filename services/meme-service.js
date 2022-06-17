@@ -48,7 +48,6 @@ function addLine() {
         font: "impact",
         align: 'left',
         color: 'white',
-        colorBackUp: 'white',
         isDrag: false,
     }
 
@@ -92,9 +91,7 @@ function alignText(direction) {
 }
 
 function changeTextColor(color) {
-    var memeline = gMeme.lines[gMeme.selectedLineIdx]
-    memeline.color = color
-    memeline.colorBackUp = memeline.color
+    gMeme.lines[gMeme.selectedLineIdx].color = color
 }
 
 function changeSelectedLine() {
