@@ -108,7 +108,6 @@ function onEditText(ev) {
         if (meme.lines[idx]) {
             elInputText.value = meme.lines[idx].txt
             elInputRange.value = meme.lines[idx].size
-            elInputText.focus()
             renderSizeRange()
         }
 
