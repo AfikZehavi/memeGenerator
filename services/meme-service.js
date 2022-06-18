@@ -48,7 +48,6 @@ function addLine() {
         isDrag: false,
     }
     gMeme.selectedLineIdx = gMeme.lines.length
-    console.log(gMeme.selectedLineIdx);
     gMeme.lines.push(newLine);
 }
 

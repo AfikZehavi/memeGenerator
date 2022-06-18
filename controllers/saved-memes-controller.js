@@ -33,9 +33,6 @@ function onOpenMeme(idx) {
 }
 function _onRemoveMeme(idx, choice) {
 
-
-    console.log(idx, choice);
-
     if (!choice) return
     gNewSavedMemes.splice(idx, 1);
     saveToStorage(MEMES_KEY, gNewSavedMemes)

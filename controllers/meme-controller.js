@@ -99,7 +99,7 @@ function onEditText(ev) {
     ev.preventDefault()
     const pos = getEvPos(ev);
     const idx = getTextIdx(pos)
-    // renderMeme()
+
     if (idx > -1) {
         var elInputText = document.querySelector('.input-text-element')
         const elInputRange = document.querySelector('.size-range-input')
@@ -149,7 +149,6 @@ function onAddLine() {
 }
 
 function onChangeSize(size = 30) {
-    console.log(size);
     if (!isTextSelected()) return
     changeSize(size)
     renderCanvas()

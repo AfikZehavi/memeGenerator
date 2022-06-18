@@ -39,7 +39,6 @@ function onUploadImg(e) {
             setImg(img.src)
         }
         img.src = event.target.result
-        console.log(event.target.result);
         img.id = 'uploaded-image'
         
     }
