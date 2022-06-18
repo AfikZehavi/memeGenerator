@@ -6,6 +6,8 @@ const gTouchEvs = ['touchstart', 'touchmove', 'touchend']
 var gStartPos
 var gLongPress
 
+
+
 function memeInit() {
     // toggle canvas and editor sections
     displayMemeSection()
@@ -106,6 +108,7 @@ function onEditText(ev) {
         if (meme.lines[idx]) {
             elInputText.value = meme.lines[idx].txt
             elInputRange.value = meme.lines[idx].size
+            elInputText.focus()
             renderSizeRange()
         }
 
@@ -142,7 +145,6 @@ function getEvPos(ev) {
 
 function onAddLine() {
     addLine()
-    // onClearCanvas()
     renderCanvas()
 
 }

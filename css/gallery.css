@@ -88,3 +88,15 @@
     font-size: 20px;
     color: var(--clr-orange);
 }
+
+.delete-meme-btn{
+    background-color: var(--clr-hidden);
+    border: none;
+    position: absolute;
+    font-size: 20px;
+    z-index: 10;
+    left: 2px;
+    top: 8px;
+    cursor: pointer;
+    color: var(--clr-orange);
+}

@@ -11,7 +11,7 @@
 </head>
 
 <body class="notSelectable" onload="openGallery()">
-    
+
     <section class="mobile-navigation display-none">
         <ul class="page-mobile-links list-layout">
             <li onclick="openSavedMemesMobile()">Memes</li>
@@ -20,7 +20,7 @@
         </ul>
     </section>
     <header class="main-nav">
-        <div class="logo">
+        <div class="logo" onclick="galleryInit()" style="cursor: pointer;">
             <img src="logo/logo.png" alt="">
         </div>
 
@@ -36,9 +36,9 @@
     </header>
 
     <section class="canvas-container display-none">
-        
-           
-         
+
+
+
         <canvas data-long-press-delay="500" id="main-canvas">
         </canvas>
     </section>
@@ -67,8 +67,7 @@
                         <option value="Arial">Arial</option>
                         <option value="Lato">Lato</option>
                     </select>
-                    <li><input type="range" class="size-range-input" 
-                        min="15" max="70" ></li>
+                    <li><input type="range" class="size-range-input" min="15" max="70"></li>
                     <li style="cursor: default">|</li>
                     <i class="fa fa-align-left" id="align-left" onclick="onTextAlign(this.id)"></i>
                     <i class="fa fa-align-center" id="align-center" onclick="onTextAlign(this.id)"></i>
@@ -97,10 +96,12 @@
         </div>
         <div class="buttons-container">
             <button><a href="#" class="btn" onclick="onDownloadMeme(this)" download="my-img.jpg">Download</a></button>
-                <button class="btn" onclick="onSaveMeme()"> <div class="popup-container">
+            <button class="btn" onclick="onSaveMeme()">
+                <div class="popup-container">
                     <span class="popuptext" id="myPopup">Saved to meme gallery.</span>
-                  </div> Save</button>
-                <button onclick="onShareMeme()">Share</button>
+                </div> Save
+            </button>
+            <button onclick="onShareMeme()">Share</button>
         </div>
 
     </section>
@@ -117,10 +118,19 @@
         </section>
     </section>
 
-    
+
     <section class="saved-memes-container display-none gallery">
 
     </section>
+
+    <div class="delete-message-container">
+        <h3>Are You Sure?</h3>
+        <div class="del-buttons-container">
+            <button class="btn-yes" style="cursor: pointer;">Yes</button>
+            <button class="btn-no" style="cursor: pointer;">No</button</>
+        </div>
+    </div>
+
     <script src="controllers/gallery-controller.js"></script>
     <script src="controllers/meme-controller.js"></script>
     <script src="controllers/saved-memes-controller.js"></script>

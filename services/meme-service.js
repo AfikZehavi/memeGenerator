@@ -24,10 +24,8 @@ function getMeme() {
     return gMeme
 }
 
-function setLineTxt(text, size = 30) {
-    // if (!gMeme.selectedLineIdx) return
+function setLineTxt(text) {
     gMeme.lines[gMeme.selectedLineIdx].txt = text
-    gMeme.lines[gMeme.selectedLineIdx].size = size
 
 }
 
@@ -49,7 +47,8 @@ function addLine() {
         color: 'white',
         isDrag: false,
     }
-
+    gMeme.selectedLineIdx = gMeme.lines.length
+    console.log(gMeme.selectedLineIdx);
     gMeme.lines.push(newLine);
 }
 
@@ -67,11 +66,6 @@ function changeSize(size) {
     memeline.size = size
 }
 
-function decreaseSize(size) {
-    var memeline = gMeme.lines[gMeme.selectedLineIdx]
-    memeline.size -= size
-
-}
 function alignText(direction) {
     var memeline = gMeme.lines[gMeme.selectedLineIdx]
     switch (direction) {
