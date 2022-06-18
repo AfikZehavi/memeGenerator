@@ -8,6 +8,12 @@ function galleryInit() {
 
 function renderGallery(imgs = getImgs()) {
     const elGallery = document.querySelector('.gallery-container')
+    
+    //////Define the upload button first
+    elGallery.innerHTML = `<div class="upload-img-container img-upload">
+    <label for="file-upload" class="upload-img-symbol"><i class="fa fa-upload" aria-hidden="true"></i></label>
+    <input type="file" id="file-upload" onchange="onUploadImg(event)">
+    </div>`
     const strHTMLs = imgs.map((img) => {
 
         return `<div class="img-container" onclick="onImgSelect(${img.id})">
@@ -16,11 +22,28 @@ function renderGallery(imgs = getImgs()) {
     }
     )
 
-    elGallery.innerHTML = strHTMLs.join('')
+    elGallery.innerHTML += strHTMLs.join('')
 }
 
 function onImgSelect(imgId) {
-    setImg(imgId)
+    const src = `imgs/${imgId}.jpg`
+    setImg(src)
+}
+
+function onUploadImg(e) {
+    // console.log('hi');
+    var reader = new FileReader()
+    reader.onload = function (event) {
+        var img = new Image()
+        img.onload = function () {
+            setImg(img.src)
+        }
+        img.src = event.target.result
+        console.log(event.target.result);
+        img.id = 'uploaded-image'
+        
+    }
+    reader.readAsDataURL(e.target.files[0])
 }
 
 function displayGallerySection() {

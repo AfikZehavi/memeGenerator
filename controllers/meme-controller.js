@@ -13,6 +13,7 @@ function memeInit() {
     gCtx = gElCanvas.getContext('2d')
     resizeCanvas()
     renderCanvas()
+    renderSizeRange()
     // clearEventListeners()
     addEventListeners()
     addTouchListeners()
@@ -26,6 +27,18 @@ function renderCanvas() {
 
     onLineCountAndUpdate()
 }
+function renderSizeRange() {
+    const slider = document.querySelector(".size-range-input")
+    const min = slider.min
+    const max = slider.max
+    const value = slider.value
+    slider.style.background = `linear-gradient(to right, orange 0%, orange ${(value - min) / (max - min) * 100}%, #DEE2E6 ${(value - min) / (max - min) * 100}%, #DEE2E6 100%)`
+
+    slider.oninput = function () {
+        this.style.background = `linear-gradient(to right, orange 0%, orange ${(this.value - this.min) / (this.max - this.min) * 100}%, #DEE2E6 ${(this.value - this.min) / (this.max - this.min) * 100}%, #DEE2E6 100%)`
+        onChangeSize(this.value)
+    };
+}
 
 function resizeCanvas(isSizeChanged = false) {
     const elContainer = document.querySelector('.canvas-container')
@@ -34,16 +47,14 @@ function resizeCanvas(isSizeChanged = false) {
     if (isSizeChanged) renderCanvas()
 }
 
-function onDrawImageById(id) {
+function onDrawImageById(src) {
     var img = new Image(500, 500);
     img.onload = function () {
         gCtx.drawImage(img, 0, 0, gElCanvas.width, gElCanvas.height)
         onDrawText()
     }
-    img.src = `imgs/${id}.jpg`
-
-
-
+    // img.src = `imgs/${id}.jpg`
+    img.src = src
 }
 
 function onDrawText() {
@@ -91,13 +102,16 @@ function onEditText(ev) {
     // renderMeme()
     if (idx > -1) {
         var elInputText = document.querySelector('.input-text-element')
+        const elInputRange = document.querySelector('.size-range-input')
         const meme = getMeme()
         onLineCountAndUpdate()
-        if (meme.lines[idx]) elInputText.value = meme.lines[idx].txt
+        if (meme.lines[idx]) {
+            elInputText.value = meme.lines[idx].txt
+            elInputRange.value = meme.lines[idx].size
+            renderSizeRange()
+        }
+
     }
-
-
-
 }
 
 
@@ -135,9 +149,10 @@ function onAddLine() {
 
 }
 
-function onIncreaseSize(size = 10) {
+function onChangeSize(size = 30) {
+    console.log(size);
     if (!isTextSelected()) return
-    increaseSize(size)
+    changeSize(size)
     renderCanvas()
 }
 
@@ -266,12 +281,18 @@ function onPlaceElement() {
 
 }
 
+function onDownloadMeme(elLink) {
+    var imgContent = gElCanvas.toDataURL('image/jpeg')// image/jpeg the default format
+    elLink.href = imgContent
+}
+
 /////// Calling Events and defining long press events
 function addEventListeners() {
     // Handeling mouse click event
     gElCanvas.addEventListener('click', onEditText)
     // Listening to long click event
     gElCanvas.addEventListener('mousedown', function (ev) {
+        onEditText(ev)
         if (gLongPress) clearTimeout(gLongPress)
         gLongPress = setTimeout(() => {
 
@@ -290,6 +311,7 @@ function addEventListeners() {
 function addTouchListeners() {
 
     gElCanvas.addEventListener('touchstart', function (ev) {
+        onEditText(ev)
         if (gLongPress) clearTimeout(gLongPress)
         gLongPress = setTimeout(() => {
             onGrabElement(ev)
@@ -302,17 +324,4 @@ function addTouchListeners() {
         clearTimeout(gLongPress)
         onPlaceElement()
     })
-
-
-    /////// Pinch events to increase or decrease size of text
-
-    gElCanvas.addEventListener('gesturechange', function(e) {
-        if (e.scale < 1.0) {
-            // User moved fingers closer together
-            onDecreaseSize(0.035)
-        } else if (e.scale > 1.0) {
-            // User moved fingers further apart
-            onIncreaseSize(0.035)
-        }
-    }, false);
 }

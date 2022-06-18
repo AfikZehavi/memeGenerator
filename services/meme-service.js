@@ -16,7 +16,6 @@ function getTextIdx(clickedPos) {
 
 
     if (idx !== -1) {
-        console.log(idx);
         gMeme.selectedLineIdx = idx
         return idx
     }
@@ -63,9 +62,9 @@ function moveElement(idx, dx, dy) {
     gMeme.lines[idx].y = dy;
 }
 
-function increaseSize(size) {
+function changeSize(size) {
     var memeline = gMeme.lines[gMeme.selectedLineIdx]
-    memeline.size += size
+    memeline.size = size
 }
 
 function decreaseSize(size) {
