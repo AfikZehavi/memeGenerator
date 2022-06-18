@@ -36,7 +36,7 @@
     color: var(--clr-orange) !important;
 }
 
-/* Animation */
+/* Hamburger Menu Animation */
 
 .spin-anim {
     animation-name: spin;

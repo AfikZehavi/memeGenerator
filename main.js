@@ -2,7 +2,6 @@
 var gLastLink
 var isMobileNavOpen = false
 function openGallery(elLink = document.getElementById('gallery-link')) {
-    // gLastLink = elLink
     changeLinkTextColor(elLink)
     galleryInit();
 }
@@ -34,8 +33,8 @@ function openSavedMemesMobile() {
 
 function toggleMobileNevigation() {
     const el = document.querySelector('.hamburger-button')
+    const mobileNav =  document.querySelector('.mobile-navigation')
     if(!isMobileNavOpen){
-        const mobileNav =  document.querySelector('.mobile-navigation')
         mobileNav.style.transform = 'translateY(5%)'
         document.body.style.overflow = 'hidden'
         el.classList.add('spin-anim')
@@ -43,8 +42,9 @@ function toggleMobileNevigation() {
         setTimeout(() => {
             el.classList.remove('spin-anim')
         }, 1000);
+
     } else {
-        const mobileNav =  document.querySelector('.mobile-navigation')
+
         mobileNav.style.transform = 'translateY(-100%)'
         document.body.style.overflow = 'auto'
         el.classList.add('spin-anim')

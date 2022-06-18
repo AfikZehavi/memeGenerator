@@ -17,8 +17,8 @@ function renderGallery(imgs = getImgs()) {
     const strHTMLs = imgs.map((img) => {
 
         return `<div class="img-container" onclick="onImgSelect(${img.id})">
-            <img src="${img.url}" >
-        </div>`
+                <img src="${img.url}" >
+                </div>`
     }
     )
 
@@ -31,7 +31,7 @@ function onImgSelect(imgId) {
 }
 
 function onUploadImg(e) {
-    // console.log('hi');
+
     var reader = new FileReader()
     reader.onload = function (event) {
         var img = new Image()

@@ -13,10 +13,7 @@
     width: 98%;
     display: flex;
     flex-direction: column;
-    /* display: grid;
-    width: 98%;
-    grid-template-columns: 100%;
-    grid-template-rows: 30px 50px; */
+
 }
 
 .text-options {
@@ -58,7 +55,6 @@
 }
 
 .input-text {
-    /* box-sizing: border-box; */
     display: flex;
     flex-basis: 100%;
 }
@@ -152,8 +148,6 @@
     height: 100px;
 }
 
-/*  */
-
 .buttons-container {
     display: flex;
     /* padding: 10px; */
@@ -188,8 +182,3 @@
     font-size: 2em;
     cursor: pointer;
 }
-
-/* Duplicator */
-
-
-

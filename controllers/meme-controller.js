@@ -14,7 +14,6 @@ function memeInit() {
     resizeCanvas()
     renderCanvas()
     renderSizeRange()
-    // clearEventListeners()
     addEventListeners()
     addTouchListeners()
     window.onresize = () => resizeCanvas(true)
@@ -53,7 +52,6 @@ function onDrawImageById(src) {
         gCtx.drawImage(img, 0, 0, gElCanvas.width, gElCanvas.height)
         onDrawText()
     }
-    // img.src = `imgs/${id}.jpg`
     img.src = src
 }
 
@@ -239,11 +237,49 @@ function onAddEmoji(emoji) {
     onSetLineTxt(emoji, 60)
     renderCanvas()
 }
+function onDownloadMeme(elLink) {
+    var imgContent = gElCanvas.toDataURL('image/jpeg')// image/jpeg the default format
+    elLink.href = imgContent
+}
+
+function onShareMeme() {
+    var imgContent = gElCanvas.toDataURL('image/jpeg')
+    
+    gElCanvas.toBlob(async (blob) => {
+        const files = [new File ([blob], 'image.jpeg', {type: blob.type})]
+        const shareData = {
+            text: 'Somoe text',
+            title: 'some title',
+            files, 
+        }
+        if (navigator.canShare(shareData)) {
+            try {
+                await navigator.share(shareData)
+            } catch (err) {
+                if (err.name !== 'AbortError') {
+                    console.error(err.name, err.message)
+                }
+            }
+        }
+    })
+}
+    
+    
+//     const file = new File(imgContent, "New Meme", {type: 'image/jpeg'})
+//     if (navigator.share) {
+//         navigator.share({
+//             title: "Hello",
+//             files: [file]
+//         }).then(() => {
+//             console.log("thanks for sharing");
+//         })
+//         .catch(console.error)
+//     } 
+// }
 
 /////// Dragging function -->
 
 function onGrabElement(ev) {
-    // ev.preventDefault()
     const pos = getEvPos(ev);
     const idx = getTextIdx(pos)
 
@@ -281,10 +317,7 @@ function onPlaceElement() {
 
 }
 
-function onDownloadMeme(elLink) {
-    var imgContent = gElCanvas.toDataURL('image/jpeg')// image/jpeg the default format
-    elLink.href = imgContent
-}
+
 
 /////// Calling Events and defining long press events
 function addEventListeners() {
