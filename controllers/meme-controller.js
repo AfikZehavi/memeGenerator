@@ -79,14 +79,14 @@ function onDrawText() {
     )
 }
 
-function onSetLineTxt(text, size = 30) {
+function onSetLineTxt(text) {
     // Add Line if there aren't any lines yet
     // ev.preventDefault()
     const meme = getMeme()
     if (!meme.lines || !meme.lines.length) {
         onAddLine()
     }
-    setLineTxt(text, size)
+    setLineTxt(text)
     // Clear text input
     document.querySelector('.input-text-element').value = ''
 
@@ -156,11 +156,6 @@ function onChangeSize(size = 30) {
     renderCanvas()
 }
 
-function onDecreaseSize(size = 10) {
-    if (!isTextSelected()) return
-    decreaseSize(size)
-    renderCanvas()
-}
 
 function onTextAlign(alignValue) {
     if (!isTextSelected()) return
@@ -213,6 +208,7 @@ function onChangeLine() {
 function onRemoveLine() {
     if (!isTextSelected()) return
     removeLine()
+    document.querySelector('.input-text-element').value = ''
     renderCanvas()
 }
 
@@ -236,9 +232,13 @@ function displayMemeSection() {
 }
 
 function onAddEmoji(emoji) {
-
-    onSetLineTxt(emoji, 60)
+    onAddLine()
+    onSetLineTxt(emoji)
     renderCanvas()
+    // var text = document.querySelector('.input-text-element').value
+    // text += emoji
+    // onSetLineTxt(text)
+
 }
 function onDownloadMeme(elLink) {
     var imgContent = gElCanvas.toDataURL('image/jpeg')// image/jpeg the default format
