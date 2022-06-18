@@ -11,6 +11,7 @@
 </head>
 
 <body class="notSelectable" onload="openGallery()">
+    
     <section class="mobile-navigation display-none">
         <ul class="page-mobile-links list-layout">
             <li onclick="openSavedMemesMobile()">Memes</li>
@@ -35,9 +36,11 @@
     </header>
 
     <section class="canvas-container display-none">
+        
+           
+         
         <canvas data-long-press-delay="500" id="main-canvas">
         </canvas>
-        <span class="duplicator-object display-none">DuplicateMe</span>
     </section>
 
     <section class="canvas-editor display-none">
@@ -64,8 +67,6 @@
                         <option value="Arial">Arial</option>
                         <option value="Lato">Lato</option>
                     </select>
-                    <!-- <li onclick="onIncreaseSize()">A+</li>
-                    <li onclick="onDecreaseSize()">A-</li> -->
                     <li><input type="range" class="size-range-input" 
                         min="15" max="70" ></li>
                     <li style="cursor: default">|</li>
@@ -73,7 +74,7 @@
                     <i class="fa fa-align-center" id="align-center" onclick="onTextAlign(this.id)"></i>
                     <i class="fa fa-align-right" id="align-right" onclick="onTextAlign(this.id)"></i>
                     <li style="cursor: default">|</li>
-                    <label for="change-color"><i class="fa-solid fa-paintbrush"></i></label><input type="color"
+                    <label for="change-color"><i class="fa-solid fa-paintbrush"></i></label> <input type="color"
                         name="change-color" id="change-color" oninput="onChangeColor(this.value)"></i>
                 </ul>
             </div>
@@ -96,16 +97,19 @@
         </div>
         <div class="buttons-container">
             <button><a href="#" class="btn" onclick="onDownloadMeme(this)" download="my-img.jpg">Download</a></button>
-                <button class="btn" onclick="onSaveMeme()">Save</button>
+                <button class="btn" onclick="onSaveMeme()"> <div class="popup-container">
+                    <span class="popuptext" id="myPopup">Saved to meme gallery.</span>
+                  </div> Save</button>
                 <button onclick="onShareMeme()">Share</button>
         </div>
+
     </section>
     <!-- Gallery Section -->
     <section class="gallery-page">
         <div class="search-container">
             <!-- <input type="search" name="search" class="search-input" placeholder="Search" onchange="onSearch(this.value)"> -->
             <form class="form-wrapper" onsubmit="onSearch(event)">
-                <input type="search" class="search-input" placeholder="Search here..." class="input-search">
+                <input type="search" class="search-input" placeholder="Search In Gallery" class="input-search">
                 <button type="submit"><i class="fa fa-magnifying-glass"></i></button>
             </form>
         </div>
@@ -113,7 +117,7 @@
         </section>
     </section>
 
-
+    
     <section class="saved-memes-container display-none gallery">
 
     </section>

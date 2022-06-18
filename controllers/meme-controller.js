@@ -223,6 +223,7 @@ function onFontChange(font) {
 function onSaveMeme() {
     const meme = getMeme()
     saveMeme(meme)
+    togglePopUp('Saved to meme gallery')
 }
 
 function displayMemeSection() {
@@ -240,16 +241,13 @@ function onAddEmoji(emoji) {
 function onDownloadMeme(elLink) {
     var imgContent = gElCanvas.toDataURL('image/jpeg')// image/jpeg the default format
     elLink.href = imgContent
+    togglePopUp('Downlading...')
 }
 
 function onShareMeme() {
-    var imgContent = gElCanvas.toDataURL('image/jpeg')
-    
-    gElCanvas.toBlob(async (blob) => {
-        const files = [new File ([blob], 'image.jpeg', {type: blob.type})]
+    gElCanvas.toBlob(async (img) => {
+        const files = [new File ([img], 'image.jpeg', {type: img.type})]
         const shareData = {
-            // text: 'Somoe text',
-            // title: 'some title',
             files, 
         }
         if (navigator.canShare(shareData)) {
@@ -265,17 +263,7 @@ function onShareMeme() {
 }
     
     
-//     const file = new File(imgContent, "New Meme", {type: 'image/jpeg'})
-//     if (navigator.share) {
-//         navigator.share({
-//             title: "Hello",
-//             files: [file]
-//         }).then(() => {
-//             console.log("thanks for sharing");
-//         })
-//         .catch(console.error)
-//     } 
-// }
+
 
 /////// Dragging function -->
 

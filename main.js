@@ -55,3 +55,13 @@ function toggleMobileNevigation() {
     }
     isMobileNavOpen = !isMobileNavOpen
 }
+
+function togglePopUp(text) {
+    const elPopUp = document.querySelector('.popup-container')
+    elPopUp.innerText = text
+    elPopUp.classList.add('popup-anim')
+
+    setTimeout(() => {
+        elPopUp.classList.remove('popup-anim')
+    }, 3000);
+}
