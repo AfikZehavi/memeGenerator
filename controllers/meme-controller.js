@@ -248,8 +248,8 @@ function onShareMeme() {
     gElCanvas.toBlob(async (blob) => {
         const files = [new File ([blob], 'image.jpeg', {type: blob.type})]
         const shareData = {
-            text: 'Somoe text',
-            title: 'some title',
+            // text: 'Somoe text',
+            // title: 'some title',
             files, 
         }
         if (navigator.canShare(shareData)) {
