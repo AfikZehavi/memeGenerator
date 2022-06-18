@@ -61,11 +61,13 @@ function onDrawText() {
     var meme = getMeme()
     meme.lines.forEach((memeline) => {
         // gCtx.globalCompositeOperation = 'destination-over'
-        // gCtx.lineWidth = 6;
+   
         gCtx.textAlign = memeline.align
         gCtx.fillStyle = memeline.color
         gCtx.font = `${memeline.size}px ${memeline.font}`
-
+        gCtx.lineWidth = 4;
+        gCtx.strokeStyle = 'black'
+        gCtx.strokeText(memeline.txt, memeline.startX, memeline.startY)
 
         gCtx.fillText(memeline.txt, memeline.startX, memeline.startY, gElCanvas.width)
 
