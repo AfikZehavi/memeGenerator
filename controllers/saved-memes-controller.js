@@ -57,9 +57,9 @@ function getUserAnswer(ev, idx) {
 function popUserMessage(isVisible = false) {
     const deleteMessage = document.querySelector('.delete-message-container')
     if (isVisible) {
-        deleteMessage.style.visibility = 'visible'
+        deleteMessage.style.display = 'flex'
     } else {
-        deleteMessage.style.visibility = 'hidden'
+        deleteMessage.style.display = 'none'
     }
 }
 function displaySavedMemesSection() {

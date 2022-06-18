@@ -20,11 +20,11 @@ body {
 }
 
 .delete-message-container {
-    visibility: hidden;
+    display: none;
     background-color: rgb(36 36 36 / 81%);
     font-family: 'Roboto';
     font-weight: 100;
-    display: flex;
+    /* display: flex; */
     flex-direction: column;
     justify-content: center;
     align-items: center;
