@@ -134,11 +134,11 @@
 }
 
 .text-options #change-color {
-    border: none;
-    background: none;
+    /* border: none;
+    background: none; */
     z-index: -1;
-    height: 0;
-    width: 0;
+    /* height: 0;
+    width: 0; */
 
 }
 
