@@ -10,9 +10,9 @@ function renderGallery(imgs = getImgs()) {
     const elGallery = document.querySelector('.gallery-container')
     
     //////Define the upload button first
-    elGallery.innerHTML = `<div class="upload-img-container img-upload" onclick="onUploadImg(event)">
-    <label for="file-upload" class="upload-img-symbol"><i class="fa fa-upload" aria-hidden="true"></i></label>
-    <input type="file" id="file-upload">
+    elGallery.innerHTML = `<div class="upload-img-container img-upload" >
+    <label for="file-upload" class="upload-img-symbol"><i class="fa fa-upload" aria-hidden="true" "></i></label>
+    <input type="file" id="file-upload" onchange="onUploadImg(event)" >
     </div>`
     const strHTMLs = imgs.map((img) => {
 
