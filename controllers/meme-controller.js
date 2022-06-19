@@ -23,7 +23,7 @@ function memeInit() {
 function renderCanvas() {
     const meme = getMeme()
     onDrawImageById(meme.selectedImgId)
-
+    document.querySelector('#change-color').style.visibility = 'hidden'
     onLineCountAndUpdate()
 }
 function renderSizeRange() {
@@ -182,6 +182,7 @@ function isTextSelected() {
 
 function onChangeColor(color) {
     if (!isTextSelected()) return
+    document.querySelector('#change-color').style.visibility = 'visible'
     changeTextColor(color)
     renderCanvas()
 }
