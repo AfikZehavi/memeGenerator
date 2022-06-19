@@ -11,14 +11,10 @@
         grid-row: 1;
     }
 
-    .search-container {
-        width: 800px;
-    }
-
     .canvas-container {
         grid-column: 1;
         grid-row: 2;
-        /* width: 300px; */
+        width: 300px;
         height: 300px;
     }
 
@@ -39,7 +35,7 @@
     }
 
     .gallery {
-        grid-template-columns: repeat(4, 165px);
+        grid-template-columns: repeat(auto-fit, 200px);
         justify-content: center;
         /* grid-template-rows: repeat(4, 2fr); */
     }
@@ -48,7 +44,7 @@
 
 /* Small Mobile */
 
-@media (max-width: 660px) {
+@media (max-width: 520px) {
 
 
     .page-links {
@@ -90,8 +86,6 @@
         line-height: 28px;
 
     }
-
-    .search-container {width: 400px;}
 
     .fontselect {
         width: 92%;
