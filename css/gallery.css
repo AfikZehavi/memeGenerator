@@ -94,7 +94,7 @@
     border: none;
     position: absolute;
     font-size: 20px;
-    z-index: 10;
+    z-index: 2;
     left: 2px;
     top: 8px;
     cursor: pointer;
