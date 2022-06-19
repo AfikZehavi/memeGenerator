@@ -78,7 +78,7 @@
                 </ul>
             </div>
             <div class="input-text">
-                <input type="text" class="input-text-element" onchange="onSetLineTxt(this.value)"
+                <input type="text" class="input-text-element" oninput="onSetLineTxt(this.value)"
                     placeholder="Enter Text...">
             </div>
 
@@ -108,7 +108,6 @@
     <!-- Gallery Section -->
     <section class="gallery-page">
         <div class="search-container">
-            <!-- <input type="search" name="search" class="search-input" placeholder="Search" onchange="onSearch(this.value)"> -->
             <form class="form-wrapper" oninput="onSearch(event)">
                 <input type="search" class="search-input" placeholder="Search In Gallery" class="input-search">
                 <button type="submit"><i class="fa fa-magnifying-glass"></i></button>

@@ -12,7 +12,7 @@ function savedMemesInit() {
 function renderMemesGallery() {
     const elGallery = document.querySelector('.saved-memes-container')
     elGallery.innerHTML = `<div class="delete-message-container">
-    <h3>Delete Meme?</h3>
+    <h3>Delete meme?</h3>
     <div class="del-buttons-container">
         <button class="btn-yes" style="cursor: pointer;">Yes</button>
         <button class="btn-no" style="cursor: pointer;">No</button</>
@@ -21,7 +21,8 @@ function renderMemesGallery() {
     const strHTMLs = gLoadedMemes.map((meme) =>
         `<div class="img-container" style="position: relative;"id=${gLoadedMemes.indexOf(meme)} onclick="onOpenMeme(this.id)">
         <img src="${meme.url}" >
-        <button class="delete-meme-btn" onclick="getUserAnswer(event, ${gLoadedMemes.indexOf(meme)})"><i class="fa fa-trash" aria-hidden="true"></i></button>
+        <button class="delete-meme-btn" onclick="getUserAnswer(event, ${gLoadedMemes.indexOf(meme)})">
+        <i class="fa fa-trash" aria-hidden="true"></i></button>
         </div>
     </div>`
     )

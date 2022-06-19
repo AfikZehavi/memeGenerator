@@ -1,5 +1,5 @@
 /* Medium */
-@media (max-width: 1030px)  {
+@media (max-width: 1250px) {
 
     body {
         grid-template-columns: 100%;
@@ -83,11 +83,12 @@
         font-weight: 500;
         font-size: 24px;
         line-height: 28px;
-        
+
     }
 
     .fontselect {
         width: 92%;
+        min-width: 324px !important;
     }
 
 }

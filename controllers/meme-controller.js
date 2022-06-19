@@ -63,11 +63,11 @@ function onDrawText() {
         gCtx.textAlign = memeline.align
         gCtx.fillStyle = memeline.color
         gCtx.font = `${memeline.size}px ${memeline.font}`
-        gCtx.lineWidth = 4;
+        gCtx.lineWidth = 1;
         gCtx.strokeStyle = 'black'
-        gCtx.strokeText(memeline.txt, memeline.startX, memeline.startY)
-
+        
         gCtx.fillText(memeline.txt, memeline.startX, memeline.startY, gElCanvas.width)
+        // gCtx.strokeText(memeline.txt, memeline.startX, memeline.startY)
 
 
         memeline.widthX = gCtx.measureText(memeline.txt).width;
@@ -86,7 +86,7 @@ function onSetLineTxt(text) {
     }
     setLineTxt(text)
     // Clear text input
-    document.querySelector('.input-text-element').value = ''
+    // document.querySelector('.input-text-element').value = ''
 
     renderCanvas()
 }
