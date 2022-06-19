@@ -109,7 +109,7 @@
     <section class="gallery-page">
         <div class="search-container">
             <!-- <input type="search" name="search" class="search-input" placeholder="Search" onchange="onSearch(this.value)"> -->
-            <form class="form-wrapper" onsubmit="onSearch(event)">
+            <form class="form-wrapper" oninput="onSearch(event)">
                 <input type="search" class="search-input" placeholder="Search In Gallery" class="input-search">
                 <button type="submit"><i class="fa fa-magnifying-glass"></i></button>
             </form>
@@ -122,14 +122,6 @@
     <section class="saved-memes-container display-none gallery">
 
     </section>
-
-    <div class="delete-message-container">
-        <h3>Delete Meme?</h3>
-        <div class="del-buttons-container">
-            <button class="btns btn-yes" style="cursor: pointer;">Yes</button>
-            <button class="btns btn-no" style="cursor: pointer;">No</button</>
-        </div>
-    </div>
 
     <script src="controllers/gallery-controller.js"></script>
     <script src="controllers/meme-controller.js"></script>

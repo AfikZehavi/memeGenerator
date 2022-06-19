@@ -56,7 +56,6 @@ function onSearch(e) {
     e.preventDefault()
     const searchInput = document.querySelector('.search-input')
     const keyword = searchInput.value
-    document.querySelector('.search-input').value = ''
     const filteredGallery = filterIGalleryOnSearch(keyword.toLowerCase())
     filteredGallery.length ? renderGallery(filteredGallery) : renderGallery()
 }

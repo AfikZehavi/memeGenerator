@@ -22,9 +22,7 @@ function memeInit() {
 }
 function renderCanvas() {
     const meme = getMeme()
-    // onClearCanvas()
     onDrawImageById(meme.selectedImgId)
-    // onDrawText()
 
     onLineCountAndUpdate()
 }

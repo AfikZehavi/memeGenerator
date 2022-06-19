@@ -1,27 +1,27 @@
 'use strict'
-var gNewSavedMemes
+var gLoadedMemes
 var gIsVisible = false
 function savedMemesInit() {
     displaySavedMemesSection()
-    gNewSavedMemes = getSavedMemes()
-    if (gNewSavedMemes) renderMemesGallery()
-    popUserMessage()
+    gLoadedMemes = getSavedMemes()
+    if (gLoadedMemes) renderMemesGallery()
+    toggleUserMessage()
 
 }
 
 function renderMemesGallery() {
     const elGallery = document.querySelector('.saved-memes-container')
     elGallery.innerHTML = `<div class="delete-message-container">
-    <h3>Are You Sure?</h3>
+    <h3>Delete Meme?</h3>
     <div class="del-buttons-container">
         <button class="btn-yes" style="cursor: pointer;">Yes</button>
         <button class="btn-no" style="cursor: pointer;">No</button</>
     </div>
 </div>`
-    const strHTMLs = gNewSavedMemes.map((meme) =>
-        `<div class="img-container" style="position: relative;"id=${gNewSavedMemes.indexOf(meme)} onclick="onOpenMeme(this.id)">
+    const strHTMLs = gLoadedMemes.map((meme) =>
+        `<div class="img-container" style="position: relative;"id=${gLoadedMemes.indexOf(meme)} onclick="onOpenMeme(this.id)">
         <img src="${meme.url}" >
-        <button class="delete-meme-btn" onclick="getUserAnswer(event, ${gNewSavedMemes.indexOf(meme)})"><i class="fa fa-trash" aria-hidden="true"></i></button>
+        <button class="delete-meme-btn" onclick="getUserAnswer(event, ${gLoadedMemes.indexOf(meme)})"><i class="fa fa-trash" aria-hidden="true"></i></button>
         </div>
     </div>`
     )
@@ -30,36 +30,38 @@ function renderMemesGallery() {
 }
 function onOpenMeme(idx) {
     loadMeme(idx)
+    memeInit()
 }
 function _onRemoveMeme(idx, choice) {
 
     if (!choice) return
-    gNewSavedMemes.splice(idx, 1);
-    saveToStorage(MEMES_KEY, gNewSavedMemes)
+    gLoadedMemes.splice(idx, 1);
+    saveToStorage(MEMES_KEY, gLoadedMemes)
     renderMemesGallery()
 
 }
 
 function getUserAnswer(ev, idx) {
     ev.stopPropagation();
-    popUserMessage(true)
+    toggleUserMessage(true)
 
     document.querySelector('.btn-yes').addEventListener('click', function () {
         _onRemoveMeme(idx, true)
-        popUserMessage()
+        toggleUserMessage()
     })
     document.querySelector('.btn-no').addEventListener('click', function () {
-        popUserMessage()
+        toggleUserMessage()
         return
     })
 }
 
-function popUserMessage(isVisible = false) {
+function toggleUserMessage(isVisible = false) {
     const deleteMessage = document.querySelector('.delete-message-container')
     if (isVisible) {
-        deleteMessage.style.display = 'flex'
+        deleteMessage.style.visibility  = 'visible'
+
     } else {
-        deleteMessage.style.display = 'none'
+        deleteMessage.style.visibility  = 'hidden'
     }
 }
 function displaySavedMemesSection() {

@@ -24,7 +24,7 @@ function getImgs() {
 
 function filterIGalleryOnSearch(word) {
     const filteredGallery = gImgs.filter(img => {
-        return img.keywords.some(keyword => keyword === word)
+        return img.keywords.some(keyword => keyword.startsWith(word));
     })
 
     return filteredGallery ? filteredGallery : false

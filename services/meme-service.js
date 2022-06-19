@@ -130,8 +130,9 @@ function getSavedMemes() {
 }
 
 function loadMeme(idx) {
-    gMeme = gSavedMemes[idx]
-    memeInit()
+    const savedMemes = _loadSavedMemes()
+    gMeme = savedMemes[idx]
+    
 }
 
 function setCanvasToDataURL() {
