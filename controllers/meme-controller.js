@@ -216,8 +216,14 @@ function onFontChange(font) {
 
 function onSaveMeme() {
     const meme = getMeme()
+    
     saveMeme(meme)
     togglePopUp('Saved to meme gallery')
+
+    // // Reload the meme to prevent saving on the same meme twice in case there are changes after saving
+    const savedMemes = getSavedMemes()
+    loadMeme(savedMemes.length - 1)
+
 }
 
 function displayMemeSection() {

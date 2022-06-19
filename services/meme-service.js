@@ -30,7 +30,7 @@ function setLineTxt(text) {
 }
 
 function setImg(imgId) {
-    gMeme.lines =[]
+    gMeme.lines = []
     gMeme.selectedImgId = imgId;
     memeInit()
 }
@@ -107,8 +107,9 @@ function changeFont(font) {
 function saveMeme(meme) {
     const memeDataURL = setCanvasToDataURL()
     const newMeme = Object.assign({}, meme, {url: memeDataURL})
+    // console.log(newMeme);
     gSavedMemes.push(newMeme)
-    
+    console.log(gSavedMemes);
 
     _savedMemesToStorage()
 }
