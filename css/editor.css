@@ -122,8 +122,7 @@
 .text-options ul {
     gap: 15px;
     color: #727272;
-    font-family: 'Georgia', sans-serif;
-    
+    font-family: 'Georgia', sans-serif;    
     height: 20px;
     width: 90%;
 }
@@ -137,10 +136,9 @@
 .text-options #change-color {
     border: none;
     background: none;
-    z-index: 0;
+    z-index: -1;
     height: 0;
     width: 0;
-    /* visibility: hidden; */
 
 }
 
