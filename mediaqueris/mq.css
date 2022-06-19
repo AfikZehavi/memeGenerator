@@ -93,7 +93,7 @@
     }
 
     .gallery {
-        grid-template-columns: repeat(auto-fit, 165px);
+        grid-template-columns: repeat(2, 165px);
         justify-content: center;
     }
 

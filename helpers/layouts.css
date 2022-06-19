@@ -5,7 +5,7 @@
 .gallery {
     grid-column: 1 / -1;
     display: grid;
-    width: 95%;
+    width: 80%;
     height: 100vh;
     grid-template-columns:repeat(6, 2fr);
     grid-template-rows: repeat(4, 2fr);

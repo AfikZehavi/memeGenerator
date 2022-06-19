@@ -13,6 +13,7 @@ function memeInit() {
     displayMemeSection()
     gElCanvas = document.getElementById('main-canvas')
     gCtx = gElCanvas.getContext('2d')
+    document.querySelector('.input-text-element').value = ''
     resizeCanvas()
     renderCanvas()
     renderSizeRange()
@@ -218,7 +219,9 @@ function onFontChange(font) {
 function onSaveMeme() {
     const meme = getMeme()
     saveMeme(meme)
-    togglePopUp('Saved to meme gallery')
+    togglePopUp(`Saved to gallery <br>
+    <span style="text-decoration: underline;">Go to meme's gallery</span>`)
+    
 }
 
 function displayMemeSection() {
