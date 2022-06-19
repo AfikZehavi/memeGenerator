@@ -28,11 +28,12 @@ body {
     justify-content: center;
     align-items: center;
     position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
     z-index: 10;
     width: 200px;
     height: 200px;
-    justify-self: center;
-    align-self: center;
     color: var(--clr-orange);
     border-radius: 6px;
     border: 3px solid white;

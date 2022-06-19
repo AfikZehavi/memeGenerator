@@ -35,8 +35,9 @@
     }
 
     .gallery {
-        grid-template-columns: repeat(2, 2fr);
-        grid-template-rows: repeat(4, 2fr);
+        grid-template-columns: repeat(auto-fit, 200px);
+        justify-content: center;
+        /* grid-template-rows: repeat(4, 2fr); */
     }
 
 }
@@ -89,6 +90,11 @@
     .fontselect {
         width: 92%;
         min-width: 324px !important;
+    }
+
+    .gallery {
+        grid-template-columns: repeat(auto-fit, 165px);
+        justify-content: center;
     }
 
 }
