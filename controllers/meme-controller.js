@@ -58,7 +58,6 @@ function onDrawImageById(src) {
 function onDrawText() {
     var meme = getMeme()
     meme.lines.forEach((memeline) => {
-        // gCtx.globalCompositeOperation = 'destination-over'
    
         gCtx.textAlign = memeline.align
         gCtx.fillStyle = memeline.color
@@ -67,7 +66,6 @@ function onDrawText() {
         gCtx.strokeStyle = 'black'
         
         gCtx.fillText(memeline.txt, memeline.startX, memeline.startY, gElCanvas.width)
-        // gCtx.strokeText(memeline.txt, memeline.startX, memeline.startY)
 
 
         memeline.widthX = gCtx.measureText(memeline.txt).width;
@@ -219,9 +217,7 @@ function onFontChange(font) {
 function onSaveMeme() {
     const meme = getMeme()
     saveMeme(meme)
-    togglePopUp(`Saved to gallery <br>
-    <span style="text-decoration: underline;">Go to meme's gallery</span>`)
-    
+    togglePopUp('Saved to meme gallery')
 }
 
 function displayMemeSection() {

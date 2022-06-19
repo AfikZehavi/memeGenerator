@@ -58,7 +58,7 @@ function toggleMobileNevigation() {
 
 function togglePopUp(text) {
     const elPopUp = document.querySelector('.popup-container')
-    elPopUp.innerHTML = text
+    elPopUp.innerText = text
     elPopUp.classList.add('popup-anim')
 
     setTimeout(() => {

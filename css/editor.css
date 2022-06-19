@@ -149,7 +149,7 @@
     justify-content: center;
     min-width: 323px;
     width: 98%;
-    height: 50px;
+    height: 100px;
 }
 
 
@@ -165,7 +165,7 @@
     background-color: var(--clr-orange);
     color: white;
     width: 82px;
-    height: 45px;
+    height: 54px;
     cursor: pointer;
     border: none;
     border-radius: 35px;
