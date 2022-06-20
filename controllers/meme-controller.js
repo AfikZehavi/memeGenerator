@@ -197,7 +197,12 @@ function onLineCountAndUpdate() {
 }
 
 function onChangeLine() {
+    const meme = getMeme()
+    if (!meme.lines || !meme.lines.length) return
     changeSelectedLine()
+    const line = meme.lines[meme.selectedLineIdx]
+    document.querySelector('.input-text-element').value = line.txt    
+    
     renderCanvas()
 }
 

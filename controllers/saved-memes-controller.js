@@ -21,8 +21,7 @@ function renderMemesGallery() {
     const strHTMLs = gLoadedMemes.map((meme) =>
         `<div class="img-container" style="position: relative;"id=${gLoadedMemes.indexOf(meme)} onclick="onOpenMeme(this.id)">
         <img src="${meme.url}" >
-        <button class="delete-meme-btn" onclick="getUserAnswer(event, ${gLoadedMemes.indexOf(meme)})">
-        <i class="fa fa-trash" aria-hidden="true"></i></button>
+        <button class="delete-meme-btn" onclick="getUserAnswer(event, ${gLoadedMemes.indexOf(meme)})">✖</button>
         </div>
     </div>`
     )

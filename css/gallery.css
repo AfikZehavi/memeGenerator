@@ -90,13 +90,14 @@
 }
 
 .delete-meme-btn{
-    background-color: var(--clr-hidden);
-    border: none;
+    background-color: #ceff008f;
+    border: 1px solid black;
+    border-radius: 35%;
     position: absolute;
     font-size: 20px;
     z-index: 2;
     left: 2px;
     top: 8px;
     cursor: pointer;
-    color: var(--clr-orange);
+    color: #ffffff;
 }
